@@ -1,0 +1,47 @@
+Release 14.7 - par P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Wed Apr 11 13:24:28 2018
+
+All signals are completely routed.
+
+WARNING:ParHelpers:361 - There are 35 loadless signals in this design. This design will cause Bitgen to issue DRC
+   warnings.
+
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory10_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory11_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory12_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory1_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory2_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory3_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory4_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory5_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory6_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory7_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory8_RAMD_O
+   lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory9_RAMD_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[0].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[10].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[11].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[12].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[13].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[14].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[15].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[1].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[2].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[3].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[4].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[5].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[6].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[7].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[8].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register_File_I/Using_LUT6.All_RAM32M[9].ram32m_i_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy1_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy2_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy3_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy4_RAMD_D1_O
+   microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_WriteThrough.DCache_I1/Mram_cacheline_copy5_RAMD_D1_O
+   microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr<30>
+   microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr<31>
+
+

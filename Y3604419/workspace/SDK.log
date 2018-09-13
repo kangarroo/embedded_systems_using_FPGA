@@ -1,0 +1,446 @@
+15:34:07.229 INFO  - Processing command line option -hwspec C:\temp\05-04-18\SDK\SDK_Export\hw\system.xml. 
+15:37:02.023 INFO  - Successfully generated C:\temp\05-04-18\workspace5\project\src\lscript.ld. 
+15:37:02.027 INFO  - Applying linker script to all configurations of project project. 
+15:37:02.030 INFO  - Setting rebuild state to true for all configurations of project project. 
+15:38:04.362 ERROR - Port COM7 is already in use. 
+15:38:30.846 INFO  - FPGA configured successfully with bitstream "C:/temp/05-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+15:38:38.925 ERROR - Port COM7 is already in use. 
+15:41:12.571 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:41:15.035 ERROR - Port COM7 is already in use. 
+17:24:33.152 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+17:24:35.750 ERROR - Port COM7 is already in use. 
+17:26:39.360 ERROR - Port COM7 is already in use. 
+17:27:21.185 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+17:27:21.212 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+17:27:21.216 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+14:38:21.058 INFO  - Processing command line option -hwspec C:\temp\06-04-18\SDK\SDK_Export\hw\system.xml. 
+14:38:47.960 ERROR - No such port: COM7 
+14:39:04.577 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:39:06.560 ERROR - Port COM6 is already in use. 
+14:39:24.026 WARN  - Terminating existing sessions on processor microblaze_0 
+14:39:32.327 INFO  - FPGA configured successfully with bitstream "C:/temp/06-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+14:39:37.837 ERROR - Port COM6 is already in use. 
+14:41:39.096 ERROR - Port COM6 is already in use. 
+14:41:48.012 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:41:51.699 ERROR - Port COM6 is already in use. 
+14:44:19.029 ERROR - Port COM6 is already in use. 
+14:50:09.809 ERROR - Port COM6 is already in use. 
+14:59:55.231 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:59:57.949 ERROR - Port COM6 is already in use. 
+15:01:04.283 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:01:06.602 ERROR - Port COM6 is already in use. 
+15:02:24.803 ERROR - Port COM6 is already in use. 
+15:11:44.480 ERROR - Port COM6 is already in use. 
+15:18:52.329 ERROR - Port COM6 is already in use. 
+15:18:52.684 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+MicroBlaze Pipeline Stalled on a Blocking Instruction or Invalid Bus Access
+    Stalled PC: 0x07fffffc
+    Try Resetting the Processor to Continue..
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+15:19:02.360 ERROR - Port COM6 is already in use. 
+15:19:02.711 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+MicroBlaze Pipeline Stalled on a Blocking Instruction or Invalid Bus Access
+    Stalled PC: 0x07fffffc
+    Try Resetting the Processor to Continue..
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+15:19:17.024 INFO  - FPGA configured successfully with bitstream "C:/temp/06-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+15:19:23.277 ERROR - Port COM6 is already in use. 
+15:49:08.395 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:49:13.050 ERROR - Port COM6 is already in use. 
+15:54:40.743 ERROR - Port COM6 is already in use. 
+16:02:54.103 ERROR - Port COM6 is already in use. 
+16:09:20.764 ERROR - Port COM6 is already in use. 
+16:34:36.539 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+16:35:48.523 INFO  - Processing command line option -hwspec C:\temp\06-04-18\SDK\SDK_Export\hw\system.xml. 
+16:45:41.575 ERROR - Port COM6 is already in use. 
+16:59:58.452 ERROR - Port COM6 is already in use. 
+16:59:58.809 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+MicroBlaze Pipeline Stalled on a Blocking Instruction or Invalid Bus Access
+    Stalled PC: 0x07fffffc
+    Try Resetting the Processor to Continue..
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+17:00:14.048 INFO  - FPGA configured successfully with bitstream "C:/temp/06-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+17:00:45.900 INFO  - FPGA configured successfully with bitstream "C:/temp/06-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+17:05:42.042 ERROR - Port COM6 is already in use. 
+17:12:33.726 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+13:49:43.617 INFO  - Processing command line option -hwspec C:\temp\09-04-18\SDK\SDK_Export\hw\system.xml. 
+13:50:19.712 INFO  - FPGA configured successfully with bitstream "C:/temp/09-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+13:50:52.303 ERROR - Port COM6 is already in use. 
+13:53:38.067 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+13:53:40.305 ERROR - Port COM6 is already in use. 
+14:00:07.553 ERROR - Port COM6 is already in use. 
+14:23:39.966 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:23:42.281 ERROR - Port COM6 is already in use. 
+14:24:46.439 ERROR - Port COM6 is already in use. 
+14:24:46.789 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+MicroBlaze Pipeline Stalled on a Blocking Instruction or Invalid Bus Access
+    Stalled PC: 0x07fffffc
+    Try Resetting the Processor to Continue..
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+14:24:53.367 ERROR - Port COM6 is already in use. 
+14:24:53.717 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+MicroBlaze Pipeline Stalled on a Blocking Instruction or Invalid Bus Access
+    Stalled PC: 0x07fffffc
+    Try Resetting the Processor to Continue..
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+14:25:08.034 INFO  - FPGA configured successfully with bitstream "C:/temp/09-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+14:25:18.473 ERROR - Port COM6 is already in use. 
+14:44:14.247 ERROR - Port COM6 is already in use. 
+14:45:02.370 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:45:04.642 ERROR - Port COM6 is already in use. 
+14:46:57.145 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:46:59.583 ERROR - Port COM6 is already in use. 
+14:50:21.239 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:50:28.362 ERROR - Port COM6 is already in use. 
+14:51:40.789 ERROR - Port COM6 is already in use. 
+14:51:41.008 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+14:51:57.534 INFO  - FPGA configured successfully with bitstream "C:/temp/09-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+14:52:09.852 ERROR - Port COM6 is already in use. 
+14:57:59.345 ERROR - Port COM6 is already in use. 
+14:58:14.659 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:58:16.618 ERROR - Port COM6 is already in use. 
+15:00:07.041 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:00:10.676 ERROR - Port COM6 is already in use. 
+15:04:39.011 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:04:41.154 ERROR - Port COM6 is already in use. 
+15:09:58.815 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:10:10.348 ERROR - Port COM6 is already in use. 
+15:16:13.929 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:16:16.328 ERROR - Port COM6 is already in use. 
+15:18:32.934 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:18:40.801 ERROR - Port COM6 is already in use. 
+15:22:01.475 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:22:06.998 ERROR - Port COM6 is already in use. 
+15:32:22.790 ERROR - Port COM6 is already in use. 
+15:32:23.109 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+15:33:02.398 INFO  - FPGA configured successfully with bitstream "C:/temp/09-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+15:33:09.248 ERROR - Port COM6 is already in use. 
+15:35:43.193 ERROR - Port COM6 is already in use. 
+15:40:30.449 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:40:33.159 ERROR - Port COM6 is already in use. 
+15:42:05.318 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:42:08.525 ERROR - Port COM6 is already in use. 
+15:46:07.671 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:46:09.614 ERROR - Port COM6 is already in use. 
+15:48:04.594 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:48:07.557 ERROR - Port COM6 is already in use. 
+15:55:26.783 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:55:29.352 ERROR - Port COM6 is already in use. 
+16:09:03.338 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:09:05.855 ERROR - Port COM6 is already in use. 
+16:11:11.975 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:11:14.069 ERROR - Port COM6 is already in use. 
+16:15:07.549 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:15:09.801 ERROR - Port COM6 is already in use. 
+16:37:53.517 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:37:55.791 ERROR - Port COM6 is already in use. 
+16:39:37.908 ERROR - Port COM6 is already in use. 
+16:39:38.258 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Debug Operation Not Supported on the Target
+MicroBlaze Pipeline Stalled on a Blocking Instruction or Invalid Bus Access
+    Stalled PC: 0xb8080584
+    Try Resetting the Processor to Continue..
+
+	at com.xilinx.sdk.targetmanager.internal.TM.downloadELF(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+16:39:56.288 INFO  - FPGA configured successfully with bitstream "C:/temp/09-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+16:43:54.294 ERROR - Port COM6 is already in use. 
+16:45:30.137 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:45:32.493 ERROR - Port COM6 is already in use. 
+16:52:50.071 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:52:52.379 ERROR - Port COM6 is already in use. 
+16:59:49.831 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:59:51.914 ERROR - Port COM6 is already in use. 
+17:00:38.210 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+17:00:40.515 ERROR - Port COM6 is already in use. 
+17:03:39.372 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+17:03:41.517 ERROR - Port COM6 is already in use. 
+17:07:45.769 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+17:07:48.122 ERROR - Port COM6 is already in use. 
+17:09:54.849 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+17:09:57.869 ERROR - Port COM6 is already in use. 
+17:16:57.315 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+17:16:57.342 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+17:16:57.347 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+13:28:01.475 INFO  - Processing command line option -hwspec C:\temp\10-04-18\SDK\SDK_Export\hw\system.xml. 
+13:28:02.893 INFO  - The hardware specification for project '05-04-18_hw_platform' is different from C:\temp\10-04-18\SDK\SDK_Export\hw\system.xml. 
+13:28:03.464 INFO  - Copied contents of C:\temp\10-04-18\SDK\SDK_Export\hw\system.xml into \05-04-18_hw_platform\system.xml. 
+13:28:03.475 INFO  - Copied contents of C:\temp\10-04-18\SDK\SDK_Export\hw\system.bit into \05-04-18_hw_platform\system.bit. 
+13:28:03.482 INFO  - Copied contents of C:\temp\10-04-18\SDK\SDK_Export\hw\system_bd.bmm into \05-04-18_hw_platform\system_bd.bmm. 
+13:28:03.774 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+13:28:47.408 INFO  - Updating hardware inferred compiler options for project. 
+13:28:47.434 INFO  - Clearing existing target manager status. 
+13:29:54.054 INFO  - FPGA configured successfully with bitstream "C:/temp/10-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+13:30:45.172 ERROR - Port COM5 is already in use. 
+14:24:55.590 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:24:58.369 ERROR - Port COM5 is already in use. 
+14:26:32.794 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:26:38.019 ERROR - Port COM5 is already in use. 
+14:37:38.043 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:37:40.741 ERROR - Port COM5 is already in use. 
+15:04:52.978 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:04:56.623 ERROR - Port COM5 is already in use. 
+15:06:41.854 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:06:44.358 ERROR - Port COM5 is already in use. 
+15:09:11.897 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:09:14.176 ERROR - Port COM5 is already in use. 
+15:14:09.561 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:14:14.858 ERROR - Port COM5 is already in use. 
+15:19:49.893 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:20:01.195 ERROR - Port COM5 is already in use. 
+15:38:46.570 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:38:49.053 ERROR - Port COM5 is already in use. 
+15:45:29.663 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:45:32.386 ERROR - Port COM5 is already in use. 
+17:02:52.822 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+17:02:52.836 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+17:02:52.841 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+14:03:06.817 INFO  - Processing command line option -hwspec C:\temp\11-04-18\SDK\SDK_Export\hw\system.xml. 
+14:04:35.760 ERROR - Port COM6 is already in use. 
+14:08:23.263 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:08:26.100 ERROR - Port COM6 is already in use. 
+14:09:00.240 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+14:09:02.422 ERROR - Port COM6 is already in use. 
+14:11:37.191 ERROR - Port COM6 is already in use. 
+14:12:45.125 ERROR - Port COM6 is already in use. 
+15:16:17.167 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:16:20.145 ERROR - Port COM6 is already in use. 
+15:17:11.541 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:17:13.577 ERROR - Port COM6 is already in use. 
+15:18:01.713 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:18:06.078 ERROR - Port COM6 is already in use. 
+15:20:03.700 ERROR - Port COM6 is already in use. 
+15:21:13.244 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:21:21.441 ERROR - Port COM6 is already in use. 
+15:23:17.919 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:23:20.932 ERROR - Port COM6 is already in use. 
+15:25:34.345 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:25:36.383 ERROR - Port COM6 is already in use. 
+15:27:37.176 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:27:39.342 ERROR - Port COM6 is already in use. 
+15:31:41.378 ERROR - Port COM6 is already in use. 
+15:33:23.362 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:33:25.450 ERROR - Port COM6 is already in use. 
+15:34:14.795 ERROR - Port COM6 is already in use. 
+15:34:30.325 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:34:32.450 ERROR - Port COM6 is already in use. 
+15:35:27.856 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:35:30.347 ERROR - Port COM6 is already in use. 
+15:36:05.042 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:36:07.318 ERROR - Port COM6 is already in use. 
+15:36:39.180 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:36:41.358 ERROR - Port COM6 is already in use. 
+15:37:14.152 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:37:17.048 ERROR - Port COM6 is already in use. 
+15:38:26.634 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:38:28.449 ERROR - Port COM6 is already in use. 
+15:39:05.057 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:39:09.952 ERROR - Port COM6 is already in use. 
+15:41:00.098 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:41:02.127 ERROR - Port COM6 is already in use. 
+15:41:57.047 ERROR - Port COM6 is already in use. 
+15:43:13.530 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:43:16.078 ERROR - Port COM6 is already in use. 
+15:49:20.921 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:49:22.916 ERROR - Port COM6 is already in use. 
+15:50:11.899 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+15:50:16.876 ERROR - Port COM6 is already in use. 
+16:01:37.713 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:01:39.593 ERROR - Port COM6 is already in use. 
+16:06:19.252 ERROR - Port COM6 is already in use. 
+16:07:57.832 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:08:00.839 ERROR - Port COM6 is already in use. 
+16:09:13.446 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:09:15.342 ERROR - Port COM6 is already in use. 
+16:11:08.846 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:11:12.135 ERROR - Port COM6 is already in use. 
+16:12:26.293 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:12:30.482 ERROR - Port COM6 is already in use. 
+16:13:27.662 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:13:30.040 ERROR - Port COM6 is already in use. 
+16:14:46.937 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:14:49.202 ERROR - Port COM6 is already in use. 
+16:19:02.434 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:19:04.374 ERROR - Port COM6 is already in use. 
+16:22:17.980 ERROR - Port COM6 is already in use. 
+16:54:50.399 ERROR - Port COM6 is already in use. 
+16:55:47.575 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+16:55:52.451 ERROR - Port COM6 is already in use. 
+16:59:21.683 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+16:59:21.699 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+12:02:04.954 INFO  - Processing command line option -hwspec C:\temp\12-04-18\SDK\SDK_Export\hw\system.xml. 
+12:02:44.429 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+12:02:46.893 ERROR - Port COM7 is already in use. 
+12:02:50.583 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+12:02:52.364 ERROR - Port COM7 is already in use. 
+12:03:04.684 WARN  - Terminating existing sessions on processor microblaze_0 
+12:03:12.858 INFO  - FPGA configured successfully with bitstream "C:/temp/12-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+12:03:20.263 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+12:03:20.269 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+12:03:26.002 ERROR - Unexpected error while issuing command {"command": "xdisconnect -cable"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:03:41.600 ERROR - Unexpected error while issuing command {"command": "xdisconnect -cable"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:03:51.723 ERROR - Unexpected error while issuing command {"command": "xdisconnect -cable"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:04:00.981 ERROR - Unexpected error while issuing command {"command": "xfpga_isconfigured -cable type digilent_plugin"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:04:00.985 ERROR - Checking FPGA configuration failed.. 
+12:04:09.569 ERROR - Unexpected error while issuing command {"command": "xdisconnect -cable"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:04:45.988 ERROR - Unexpected error while issuing command {"command": "xfpga_isconfigured -cable type digilent_plugin"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:04:45.992 ERROR - Checking FPGA configuration failed.. 
+12:05:02.447 ERROR - Unexpected error while issuing command {"command": "xdisconnect -cable"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:05:39.463 INFO  - Processing command line option -hwspec C:\temp\12-04-18\SDK\SDK_Export\hw\system.xml. 
+12:05:53.851 INFO  - FPGA configured successfully with bitstream "C:/temp/12-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+12:05:59.696 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+12:05:59.702 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+12:06:06.116 ERROR - Unexpected error while issuing command {"command": "xdisconnect -cable"} to XMD: java.net.SocketException: Connection reset by peer: socket write error 
+12:06:44.736 INFO  - Processing command line option -hwspec C:\temp\12-04-18\SDK\SDK_Export\hw\system.xml. 
+12:07:31.855 ERROR - Port COM7 is already in use. 
+12:17:41.383 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+12:17:43.789 ERROR - Port COM7 is already in use. 
+14:41:58.774 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+14:41:58.794 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+14:08:20.908 INFO  - Processing command line option -hwspec C:\temp\13-04-18\SDK\SDK_Export\hw\system.xml. 
+14:08:39.193 INFO  - FPGA configured successfully with bitstream "C:/temp/13-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+17:14:16.970 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+17:14:17.001 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+17:14:17.007 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+17:06:57.152 INFO  - Processing command line option -hwspec C:\temp\14-04-18\SDK\SDK_Export\hw\system.xml. 
+17:07:13.319 INFO  - FPGA configured successfully with bitstream "C:/temp/14-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+17:07:31.678 ERROR - No such port: COM7 
+19:58:13.948 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+19:58:16.443 ERROR - No such port: COM7 
+20:19:12.923 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+20:19:12.944 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+17:12:52.610 INFO  - Processing command line option -hwspec C:\temp\14-04-18\SDK\SDK_Export\hw\system.xml. 
+17:13:13.314 INFO  - FPGA configured successfully with bitstream "C:/temp/14-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+17:16:44.174 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+17:26:07.105 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+17:32:07.236 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+18:04:07.432 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+18:05:27.233 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+18:05:27.250 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+18:10:48.451 INFO  - Processing command line option -hwspec C:\temp\14-04-18\SDK\SDK_Export\hw\system.xml. 
+18:11:10.149 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+18:11:10.168 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+18:11:10.176 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+15:44:08.700 INFO  - Processing command line option -hwspec C:\temp\16-04-18\SDK\SDK_Export\hw\system.xml. 
+15:44:27.765 INFO  - FPGA configured successfully with bitstream "C:/temp/16-04-18/workspace5/05-04-18_hw_platform/download.bit" 
+18:47:06.415 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+18:47:06.440 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+18:51:36.727 INFO  - Processing command line option -hwspec C:\temp\Y3604419\SDK\SDK_Export\hw\system.xml. 
+18:52:58.529 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+18:52:58.556 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+18:52:58.561 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+19:01:56.854 INFO  - Processing command line option -hwspec C:\tmp\Y3604419\Y3604419\SDK\SDK_Export\hw\system.xml. 
+19:08:08.383 ERROR - Unexpected error while parsing XMD response ?: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+19:31:57.889 INFO  - Processing command line option -hwspec C:\tmp\Y3604419\poop\Y3604419\Y3604419\SDK\SDK_Export\hw\system.xml. 
+19:32:56.677 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+19:32:56.692 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+19:32:56.700 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+19:33:00.668 INFO  - Processing command line option -hwspec C:\tmp\Y3604419\poop\Y3604419\Y3604419\SDK\SDK_Export\hw\system.xml. 
+19:38:12.708 INFO  - Processing command line option -hwspec C:\tmp\Y3604419\poop\Y3604419\Y3604419\SDK\SDK_Export\hw\system.xml. 
+19:46:56.138 INFO  - Processing command line option -hwspec C:\temp\NEW\Y3604419\Y3604419\SDK\SDK_Export\hw\system.xml. 
+19:48:27.044 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+19:49:07.197 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+19:49:07.211 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+19:49:07.217 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 
+19:49:21.724 INFO  - Processing command line option -hwspec C:\temp\NEW\Y3604419\Y3604419\SDK\SDK_Export\hw\system.xml. 
+19:49:40.808 ERROR - Unable to disconnect from existing targets java.lang.NullPointerException
+	at com.xilinx.sdk.targetmanager.internal.json.XMDJSONProcess.issueCommand(Unknown Source)
+	at com.xilinx.sdk.targetmanager.internal.TM.disconnectTarget(Unknown Source)
+
+19:49:40.833 ERROR - Unexpected error while fetching XMD's response:  java.net.SocketException: Connection reset
+	at java.net.SocketInputStream.read(Unknown Source)
+	at sun.nio.cs.StreamDecoder.readBytes(Unknown Source)
+
+19:49:40.841 ERROR - Zero sized response read from XMD. This indicates a communication error or a programming error. 

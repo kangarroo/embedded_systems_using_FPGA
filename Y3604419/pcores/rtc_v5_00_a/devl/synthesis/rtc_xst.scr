@@ -1,0 +1,12 @@
+run
+-opt_level 2
+-opt_mode speed
+-ifmt mixed
+-ifn "C:\temp\05-04-18\pcores\rtc_v5_00_a\devl\synthesis\rtc_xst.prj"
+-top rtc
+-p virtex6
+-ofn "C:\temp\05-04-18\pcores\rtc_v5_00_a\devl\synthesis\rtc_xst.ngc"
+-iobuf NO
+-rtlview YES
+-hierarchy_separator /
+-work_lib rtc_v5_00_a

@@ -1,0 +1,744 @@
+#include "xparameters.h"
+#include "xbasic_types.h"
+#include "xstatus.h"
+#include "xio.h"
+#include "xgpio.h"
+#include <stdio.h>
+#include "sys/init.h"
+#include "sys/intr.h"
+#include "xmk.h"
+#include <pthread.h>
+#include <sys/types.h>
+#include "lcd.h"
+#include <errno.h>
+#include "semaphore.h"
+
+
+
+/***************************************************/
+/* Constants */
+/***************************************************/
+#define DIP_0 1
+#define DIP_1 2
+#define DIP_2 4
+#define DIP_3 8
+#define DIP_4 16
+#define DIP_5 32
+#define DIP_6 64
+#define DIP_7 128
+
+
+static XGpio load_s; //Second Load Flag
+static XGpio load_m; //Minute Load Flag
+static XGpio load_h; //Hour Load Flag
+static XGpio gpio_North; //North Button
+static XGpio gpio_East;  //East Button
+static XGpio gpio_South; //South Button
+static XGpio gpio_West;  //West Button
+static XGpio gpio_Centre;//Centre Button
+static XGpio DIP_switch; //DIP Switches 0 - 7
+static XGpio LEDS; //LEDs 0-7
+
+
+static pthread_t thread1; //Main Clock Thread
+static pthread_t thread2; //Set Time
+static pthread_t thread3; //Set Alarm
+static pthread_t thread4; //Stopwatch
+static pthread_t thread5; //Stopwatch Internal Timer (run stopwatch)
+static pthread_t thread6; //Alarm Flash
+
+static pthread_mutex_t system_mutex; //Main system mutex
+static pthread_mutex_t sw_mutex; //Stopwatch mutex
+
+static sem_t button_sem; //Semaphore for button presses
+volatile Xuint32 button_val = 0; //1=N 2=E 3=S 4=W 5=C
+volatile Xuint32 old_switch_val = 0; //Old DIP switch value
+volatile Xuint32 clock_switch = 0; //Switches between 24H/12H
+
+volatile Xuint32 alarm_hr = 0; //Alarm Hour Value
+volatile Xuint32 alarm_min = 0; //Alarm Minute Value
+volatile Xuint32 alarm_sec = 0; //Alarm second value
+volatile Xuint32 alarm_fl = 0; //Alarm Active flag
+volatile Xuint32 alarm_set = 0; //Alarm set flag (Switches set time function to alarm mode)
+volatile Xuint32 alarm_end = 0; //Starts and stops alarm flash function
+
+volatile Xuint32 sw_hr = 0; //Stopwatch hour counter
+volatile Xuint32 sw_min = 0; //Stopwatch minute counter
+volatile Xuint32 sw_sec = 0; //Stopwatch second counter
+volatile Xuint32 sw_day = 0; //Stopwatch day counter
+volatile Xuint32 sw_exit = 0; //Stopwatch exit flag
+
+void* run_clock(void *data);
+void* set_time(void *data);
+void* stopwatch(void *data);
+void* run_stopwatch(void *data);
+void* alarm_flash(void *data);
+
+
+/***************************************************/
+/* Interrupt Handlers							   */
+/***************************************************/
+/***************************************************/
+/* Button Interrupts							   */
+/***************************************************/
+//North Button Interrupt Handler
+void button_N_int_handler(void *data){
+	button_val = 1;
+	Xuint32 val = XGpio_DiscreteRead(&gpio_North,1); //Reads GPIO data
+	Xuint32 sem_val;
+	sem_getvalue(&button_sem,&sem_val);//Check semaphore value
+	if(val != 0 && sem_val == -1){ //Check if button is being pressed and a task is waiting for a button press
+		sem_post(&button_sem);//Increment semaphore
+	}
+	XGpio_InterruptClear(&gpio_North, 0x01);
+}
+
+//East Button Interrupt Handler
+void button_E_int_handler(void *data){
+	Xuint32 val = XGpio_DiscreteRead(&gpio_East,1);
+	Xuint32 sem_val;
+	sem_getvalue(&button_sem,&sem_val);
+	if(val != 0 && sem_val == -1){
+		button_val = 2;
+		sem_post(&button_sem);
+	}
+	XGpio_InterruptClear(&gpio_East, 0x01);
+}
+
+//South Button Interrupt Handler
+void button_S_int_handler(void *data){
+	Xuint32 val = XGpio_DiscreteRead(&gpio_South,1);
+	Xuint32 sem_val;
+	sem_getvalue(&button_sem,&sem_val);
+	if(val != 0 && sem_val == -1){
+		button_val = 3;
+		sem_post(&button_sem);
+	}
+	XGpio_InterruptClear(&gpio_South, 0x01);
+}
+
+//West Button Interrupt Handler
+void button_W_int_handler(void *data){
+	Xuint32 val = XGpio_DiscreteRead(&gpio_West,1);
+	Xuint32 sem_val;
+	sem_getvalue(&button_sem,&sem_val);
+	if(val != 0 && sem_val == -1){
+		button_val = 4;
+		sem_post(&button_sem);
+	}
+	XGpio_InterruptClear(&gpio_West, 0x01);
+}
+
+//Centre Button Interrupt Handler
+void button_C_int_handler(void *data){
+	xil_printf("C");
+	Xuint32 val = XGpio_DiscreteRead(&gpio_Centre,1);
+	Xuint32 sem_val;
+	sem_getvalue(&button_sem,&sem_val);
+	if(val != 0 && sem_val == -1){
+		button_val = 5;
+		sem_post(&button_sem);
+	}
+	XGpio_InterruptClear(&gpio_Centre, 0x01);
+}
+
+//DIP Switch interrupt handler
+/*Reads the DIP switch values and activates actions accordingly.
+ *Extra cases can be added to the switch, to account for combination
+ *values of the DIP switches. (Eg. DIP_0 + DIP_1 = 3). For a new interaction
+ *to be registered, the switches must be toggled (0->1->0).
+ * */
+void DIP_switch_int_handler(void *data){
+	Xuint32 val = XGpio_DiscreteRead(&DIP_switch, 1); //Read DIP switch value
+	if(val < old_switch_val){
+		old_switch_val = val;
+	} else {
+		switch(val){
+			case DIP_0:
+				xil_printf("1");
+				pthread_attr_t threadAttrs2;
+				pthread_attr_init(&threadAttrs2);
+				pthread_create(&thread2, &threadAttrs2, set_time, NULL);
+				break;
+			case DIP_1: //Switches the clock mode flag
+				lcd_clear();
+				if(clock_switch == 0){
+					clock_switch = 1; //12H clock
+				} else {
+					clock_switch = 0; //24H clock
+				}
+				break;
+			case DIP_2: //Switches the Alarm flag
+				if(alarm_fl == 0){
+					alarm_fl = 1;
+				} else {
+					alarm_fl = 0;
+				}
+				break;
+			case DIP_3: //Runs the "Set Alarm" flag
+				alarm_set = 1;
+				pthread_attr_t threadAttrs3;
+				pthread_attr_init(&threadAttrs3);
+				pthread_create(&thread3, &threadAttrs3, set_time, NULL);
+				break;
+
+			case DIP_4: //Runs Stopwatch thread
+				xil_printf("2");
+				pthread_attr_t threadAttrs4;
+				pthread_attr_init(&threadAttrs4);
+				pthread_create(&thread4, &threadAttrs4, stopwatch, NULL);
+				break;
+			case DIP_5: //Unused
+				break;
+			case DIP_6: //Unused
+				break;
+			case DIP_7: //Unused
+				break;
+		}
+		old_switch_val = val;
+	}
+	//xil_printf("INTERRUPT END");
+	XGpio_InterruptClear(&DIP_switch,0x01);
+}
+/***************************************************/
+/* Main program */
+/***************************************************/
+
+/**************************************************
+ * Clock thread function
+ * This function outputs the RTC values to the LCD, using the
+ * Alarm flag and the Clock_switch toggle, this function can run
+ * the alarm and switch views respectively.
+ */
+void* run_clock(void *data){
+	xil_printf("RTC Test start\r\n");
+    Xuint32 sec_val;
+    Xuint32 min_val;
+    Xuint32 hr_val;
+    Xuint32 sec_val_old; //Display only every second
+    lcd_clear();
+	while(1){
+		pthread_mutex_lock(&system_mutex);
+		XGpio_DiscreteWrite(&load_s,1,0);//Set RTC Load Second flag to 0
+		XGpio_DiscreteWrite(&load_m,1,0);//Set RTC Load Minute flag to 0
+		XGpio_DiscreteWrite(&load_h,1,0);//Set RTC Load Hour flag to 0
+    	sec_val = XIo_In32(XPAR_RTC_0_BASEADDR); //Read RTC second value
+    	min_val = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000004); //Read RTC Minute Value
+    	hr_val = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000008); //Read RTC Hour Value
+    	char time[7];
+    	/***************************************************************
+    	 * Alarm
+    	 * If the time matches the Alarm time, the alarm process starts,
+    	 * first it will check the current time and display an appropriate
+    	 * message, while flashing the LEDs. Alarm is displayed till one of
+    	 * the push buttons is pressed, if the centre button is pushed the
+    	 * alarm will snooze for 5 mins.
+    	 */
+    	if(alarm_fl == 1){//Check Alarm is active
+    		//Check if Time == Alarm time
+    		if(alarm_hr == hr_val && alarm_min == min_val && alarm_sec == sec_val){
+    			lcd_clear();
+    			lcd_move(0,0);
+    			if(hr_val < 12){
+    				lcd_print("Good Morning!");
+    			} else if(hr_val < 17) {
+    				lcd_print("Good Afternoon!");
+    			} else {
+    				lcd_print("Good Evening!");
+    			}
+    			lcd_move(1,0);
+    			lcd_print("PRESS C FOR ZZZ");
+    			//Run Alarm_flash thread
+				pthread_attr_t threadAttrs6;
+				pthread_attr_init(&threadAttrs6);
+				pthread_create(&thread6, &threadAttrs6, alarm_flash, NULL);
+    			sem_wait(&button_sem);
+    			if(button_val == 5){ //IF centre button pushed, snooze alarm for 5 mins
+    				xil_printf("SNOOZE");
+    				alarm_min = alarm_min + 5;
+    				if(alarm_min >= 60){//Fixes alarm snooze rollover issues
+    					Xuint32 val = alarm_min -60;
+    					alarm_min = val;
+    					alarm_hr++;
+    				}
+    			}
+    			alarm_end= 1;
+    			lcd_clear();
+    		} else {
+    			lcd_move(0,15);
+    			lcd_print("A");//Display alarm indicator
+    		}
+    	}else{
+    		lcd_move(0,15);
+    		lcd_print(" ");//remove alarm indicator
+    	}
+
+    	if(clock_switch == 1){//Switch to 12H clock
+    		lcd_move(0,10);
+    		if(hr_val < 12){
+    			lcd_print("AM");
+    		}else{
+    			lcd_print("PM");
+    		}
+    		hr_val = hr_val%12;
+    		if(hr_val == 0){
+    			hr_val = 12;
+    		}
+
+    	}
+    	sprintf(time,"%.2d:%.2d:%.2d",hr_val,min_val,sec_val);
+
+    	if (sec_val != sec_val_old){//Display time, LCD updates every second
+    	  xil_printf("s:%.2d m:%.2d h:%.2d\r\n",sec_val,min_val,hr_val);
+    	  lcd_move(0,0);
+    	  lcd_print(time);
+
+    	  sec_val_old = sec_val;
+    	}
+
+    	pthread_mutex_unlock(&system_mutex);
+	}
+}
+/********************************************************
+ * Stopwatch (with Laptimer)
+ * Starts a stopwatch with a precision of 1 second (for better precision a new
+ * RTC would be required), On start this function records the current time. When
+ * the stopwatch is cleared, the stopwatch time is added to the recorded time and
+ * and the stopwatch time is reset, this is so the clock can function as normal once
+ * the stopwatch is closed.
+ *
+ * N Button: Record Lap time
+ * C Button: Clear Stopwatch
+ * S Button: Exit Stopwatch
+ */
+void* stopwatch(void *data){
+	if(pthread_mutex_lock(&system_mutex)){
+		xil_printf("MUTEX LOCK FAIL");
+	}
+	xil_printf("Stopwatch");
+	//Store Current time
+	Xuint32 sec = XIo_In32(XPAR_RTC_0_BASEADDR);
+	Xuint32 min = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000004);
+	Xuint32 hr = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000008);
+
+	//clear RTC
+	XGpio_DiscreteWrite(&load_h,1,1);
+	XGpio_DiscreteWrite(&load_m,1,1);
+	XGpio_DiscreteWrite(&load_s,1,1);
+	XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000008,0);
+	XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000004,0);
+	XIo_Out32(XPAR_RTC_0_BASEADDR,0);
+	XGpio_DiscreteWrite(&load_h,1,0);
+	XGpio_DiscreteWrite(&load_m,1,0);
+	XGpio_DiscreteWrite(&load_s,1,0);
+
+	//open clock thread
+	pthread_attr_t threadAttrs5;
+	pthread_attr_init(&threadAttrs5);
+	pthread_create(&thread5, &threadAttrs5, run_stopwatch, NULL);
+
+	//Board Settings
+	Xuint32 end = 0;
+	char time[15];
+	while(end == 0){
+		sem_wait(&button_sem);
+		switch(button_val){
+		 case 1: //Lap
+			//lcd_move(1,0);
+			//lcd_print("                   ");
+
+			sprintf(time,"LAP:%d,%.2d:%.2d:%.2d  ",sw_day,sw_hr,sw_min,sw_sec);
+			lcd_move(1,0);
+			lcd_print(time);
+
+			sec = sec+sw_sec;
+			min = min+sw_min;
+			hr = hr+sw_hr;
+
+			XGpio_DiscreteWrite(&load_h,1,1);
+			XGpio_DiscreteWrite(&load_m,1,1);
+			XGpio_DiscreteWrite(&load_s,1,1);
+			XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000008,0);
+			XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000004,0);
+			XIo_Out32(XPAR_RTC_0_BASEADDR,0);
+			XGpio_DiscreteWrite(&load_h,1,0);
+			XGpio_DiscreteWrite(&load_m,1,0);
+			XGpio_DiscreteWrite(&load_s,1,0);
+			break;
+
+		 case 3: //Exit stopwatch
+			 	 xil_printf("EXIT");
+
+				sec = sec+sw_sec;
+				min = min+sw_min;
+				hr = hr+sw_hr;
+
+				XGpio_DiscreteWrite(&load_h,1,1);
+				XGpio_DiscreteWrite(&load_m,1,1);
+				XGpio_DiscreteWrite(&load_s,1,1);
+				XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000008,hr);
+				XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000004,min);
+				XIo_Out32(XPAR_RTC_0_BASEADDR,sec);
+				XGpio_DiscreteWrite(&load_h,1,0);
+				XGpio_DiscreteWrite(&load_m,1,0);
+				XGpio_DiscreteWrite(&load_s,1,0);
+				button_val = 0;
+				sw_exit = 1;
+				end = 1;
+				break;
+
+		 case 5: //clear
+					sec = sec+sw_sec;
+					min = min+sw_min;
+					hr = hr+sw_hr;
+
+					XGpio_DiscreteWrite(&load_h,1,1);
+					XGpio_DiscreteWrite(&load_m,1,1);
+					XGpio_DiscreteWrite(&load_s,1,1);
+					XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000008,0);
+					XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000004,0);
+					XIo_Out32(XPAR_RTC_0_BASEADDR,0);
+					XGpio_DiscreteWrite(&load_h,1,0);
+					XGpio_DiscreteWrite(&load_m,1,0);
+					XGpio_DiscreteWrite(&load_s,1,0);
+					break;
+
+
+		}
+	}
+
+	if(pthread_mutex_unlock(&system_mutex)){
+		xil_printf("MUTEX UNLOCK FAIL");
+	}
+	sw_exit = 0;
+	pthread_exit(&thread4);
+}
+
+void* run_stopwatch(void *data){
+	lcd_clear();
+	lcd_move(1,0);
+	lcd_print("Stopwatch");
+
+	Xuint32 old_sec_val= 0;
+
+	while(sw_exit == 0){
+		pthread_mutex_lock(&sw_mutex);
+		lcd_move(0,0);
+    	sw_sec = XIo_In32(XPAR_RTC_0_BASEADDR);
+    	sw_min = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000004);
+    	sw_hr = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000008);
+    	char time[10];
+    	if(sw_sec != old_sec_val){
+        	if(sw_sec == sw_min == 59 && sw_hr == 23){
+        		sw_day++;
+        	}
+    		sprintf(time,"%d,%.2d:%.2d:%.2d",sw_day,sw_hr,sw_min,sw_sec);
+    		lcd_print(time);
+    	}
+    	old_sec_val = sw_sec;
+    	pthread_mutex_unlock(&sw_mutex);
+	}
+	lcd_clear();
+	pthread_exit(&thread5);
+}
+
+void* set_time(void *data){
+	xil_printf("\nSet time\r\n");
+	if(pthread_mutex_lock(&system_mutex)){
+		xil_printf("MUTEX LOCK FAIL");
+	}
+	Xuint32 second;
+	Xuint32 minute;
+	Xuint32 hour;
+	if(alarm_set == 0){
+		second = XIo_In32(XPAR_RTC_0_BASEADDR);
+		minute = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000004);
+		hour = XIo_In32(XPAR_RTC_0_BASEADDR | 0x00000008);
+	}else{
+		second = alarm_sec;
+		minute = alarm_min;
+		hour = alarm_hr;
+	}
+	xil_printf("Current Time: s:%.2d m:%.2d h:%.2d\r\n",second,minute,hour);
+	char time[7];
+	Xuint32 exit = 0;
+	Xuint32 unit_switch = 0;
+	lcd_clear();
+	lcd_move(1,0);
+	lcd_print("^^");
+	lcd_move(0,0);
+	while(exit==0){
+		sprintf(time,"%.2d:%.2d:%.2d",hour,minute,second);
+		lcd_print("               ");
+		//lcd_home();
+		lcd_move(0,0);
+		lcd_print(time);
+		lcd_move(0,10);
+		if(alarm_set == 0){
+			lcd_print("SET");
+		} else {
+			lcd_print("SET A");
+		}
+		Xuint32 value;
+		sem_wait(&button_sem);
+		switch(button_val){
+			case 1://NORTH: INCREMENT UNIT
+				if(unit_switch == 0){
+					hour++;
+					if(hour > 23){
+						hour = 0;
+					}
+				} else if (unit_switch == 1){
+					minute++;
+					if(minute>59){
+						minute = 0;
+					}
+				} else {
+					second++;
+					if(second>59){
+						second = 0;
+					}
+				}
+				break;
+			case 2://EAST: MOVE UNIT ->
+				if(unit_switch<2){
+					unit_switch++;
+					xil_printf("SWITCH: %d",unit_switch);
+					if(unit_switch == 2){
+						lcd_move(1,0);
+						lcd_print("          ");
+						lcd_move(1,6);
+						lcd_print("^^");
+					} else if (unit_switch == 1){
+						lcd_move(1,0);
+						lcd_print("          ");
+						lcd_move(1,3);
+						lcd_print("^^");
+					}
+				}
+				break;
+			case 3://SOUTH: DECREMENT UNIT
+				if(unit_switch == 0){
+					hour--;
+					if(hour >= 63){
+						hour=23;
+					}
+				} else if (unit_switch == 1){
+					minute--;
+					if(minute >= 63){
+						minute = 59;
+					}
+				} else {
+					second--;
+					if(second >= 63){
+						second = 59;
+					}
+				}
+				break;
+			case 4://WEST: MOVE UNIT <-
+				if(unit_switch>0){
+					unit_switch--;
+					xil_printf("SWITCH: %d",unit_switch);
+					if(unit_switch == 0){
+						lcd_move(1,0);
+						lcd_print("          ");
+						lcd_move(1,0);
+						lcd_print("^^");
+					} else if (unit_switch == 1){
+						lcd_move(1,0);
+						lcd_print("          ");
+						lcd_move(1,3);
+						lcd_print("^^");
+					}
+				}
+				break;
+			case 5://CENTRE: Set time
+				if(alarm_set==0){
+					XGpio_DiscreteWrite(&load_h,1,1);
+					XGpio_DiscreteWrite(&load_m,1,1);
+					XGpio_DiscreteWrite(&load_s,1,1);
+					XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000008,hour);
+					XIo_Out32(XPAR_RTC_0_BASEADDR| 0x00000004,minute);
+					XIo_Out32(XPAR_RTC_0_BASEADDR,second);
+				}else{
+					alarm_hr = hour;
+					alarm_min = minute;
+					alarm_sec = second;
+				}
+				button_val = 0;
+				exit = 1;
+			default:
+				xil_printf("ERR");
+
+		}
+	}
+	lcd_clear();
+	alarm_set = 0;
+	if(pthread_mutex_unlock(&system_mutex)){
+		xil_printf("MUTEX UNLOCK FAIL");
+	}
+
+	pthread_exit(&thread2);
+	return 0;
+}
+
+
+void* alarm_flash(void *data){
+	Xuint32 val = 1;
+	while(alarm_end == 0){
+		XGpio_DiscreteWrite(&LEDS,1,val);
+		val  = val*2;
+		xil_printf("Alarm %d",val);
+		if(val == 256){
+			val = 1;
+		}
+		sleep(50);
+	}
+	alarm_end = 0;
+	XGpio_DiscreteWrite(&LEDS,1,0x00000000);
+	pthread_exit(&thread6);
+}
+
+void* xil_main(void *data){
+	//Set up GPIO interrupts
+
+	//Register handlers
+    register_int_handler(XPAR_AXI_INTC_0_AXI_GPIO_0_IP2INTC_IRPT_INTR,button_N_int_handler,NULL);
+    register_int_handler(XPAR_AXI_INTC_0_AXI_GPIO_1_IP2INTC_IRPT_INTR,button_E_int_handler,NULL);
+    register_int_handler(XPAR_AXI_INTC_0_AXI_GPIO_2_IP2INTC_IRPT_INTR,button_S_int_handler,NULL);
+    register_int_handler(XPAR_AXI_INTC_0_AXI_GPIO_3_IP2INTC_IRPT_INTR,button_W_int_handler,NULL);
+    register_int_handler(XPAR_AXI_INTC_0_AXI_GPIO_4_IP2INTC_IRPT_INTR,button_C_int_handler,NULL);
+    register_int_handler(XPAR_AXI_INTC_0_DIP_SWITCHES_8BITS_IP2INTC_IRPT_INTR,DIP_switch_int_handler,NULL);
+
+    //Enable interrupt handler
+    enable_interrupt(XPAR_AXI_INTC_0_AXI_GPIO_0_IP2INTC_IRPT_INTR);
+    enable_interrupt(XPAR_AXI_INTC_0_AXI_GPIO_1_IP2INTC_IRPT_INTR);
+    enable_interrupt(XPAR_AXI_INTC_0_AXI_GPIO_2_IP2INTC_IRPT_INTR);
+    enable_interrupt(XPAR_AXI_INTC_0_AXI_GPIO_3_IP2INTC_IRPT_INTR);
+    enable_interrupt(XPAR_AXI_INTC_0_AXI_GPIO_4_IP2INTC_IRPT_INTR);
+    enable_interrupt(XPAR_AXI_INTC_0_DIP_SWITCHES_8BITS_IP2INTC_IRPT_INTR);
+    //Enable GPIO interrupt (Global)
+    XGpio_InterruptGlobalEnable(&gpio_North);
+    XGpio_InterruptGlobalEnable(&gpio_East);
+    XGpio_InterruptGlobalEnable(&gpio_South);
+    XGpio_InterruptGlobalEnable(&gpio_West);
+    XGpio_InterruptGlobalEnable(&gpio_Centre);
+    XGpio_InterruptGlobalEnable(&DIP_switch);
+    //Enable GPIO interrupt
+    XGpio_InterruptEnable(&gpio_North,0x01);
+    XGpio_InterruptEnable(&gpio_East,0x01);
+    XGpio_InterruptEnable(&gpio_South,0x01);
+    XGpio_InterruptEnable(&gpio_West,0x01);
+    XGpio_InterruptEnable(&gpio_Centre,0x01);
+    XGpio_InterruptEnable(&DIP_switch,0x01);
+    lcd_init();
+
+
+    pthread_attr_t threadAttrs1;
+
+	pthread_attr_init(&threadAttrs1);
+
+
+	pthread_create(&thread1, &threadAttrs1, run_clock, NULL);
+
+    return 0;
+}
+
+
+
+
+
+int main (void) {
+
+    xil_printf("LCD Test\n");
+    Xuint32 status;
+
+    status = XGpio_Initialize(&load_s, XPAR_AXI_GPIO_5_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO Sec FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+    status = XGpio_Initialize(&load_m, XPAR_AXI_GPIO_6_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO Min FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&load_h, XPAR_AXI_GPIO_7_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO Hr FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&gpio_North, XPAR_AXI_GPIO_0_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO N FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&gpio_East, XPAR_AXI_GPIO_1_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO E FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&gpio_South, XPAR_AXI_GPIO_2_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO S FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&gpio_West, XPAR_AXI_GPIO_3_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO W FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&gpio_Centre, XPAR_AXI_GPIO_4_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("GPIO C FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&DIP_switch, XPAR_DIP_SWITCHES_8BITS_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("DIP SWITCH FAILED TO INIT.\n");
+    	return XST_FAILURE;
+    }
+
+    status = XGpio_Initialize(&LEDS, XPAR_LEDS_8BITS_DEVICE_ID);
+    if(status != XST_SUCCESS){
+    	xil_printf("LED INIT FAILURE\n");
+    }
+
+    XGpio_SetDataDirection(&load_s,1, 0x0000000);
+    XGpio_SetDataDirection(&load_m,1, 0x0000000);
+    XGpio_SetDataDirection(&load_h,1, 0x0000000);
+    XGpio_SetDataDirection(&gpio_North, 1, 0xFFFFFFFF);
+    XGpio_SetDataDirection(&gpio_East, 1, 0xFFFFFFFF);
+    XGpio_SetDataDirection(&gpio_South, 1, 0xFFFFFFFF);
+    XGpio_SetDataDirection(&gpio_West, 1, 0xFFFFFFFF);
+    XGpio_SetDataDirection(&gpio_Centre, 1, 0xFFFFFFFF);
+    XGpio_SetDataDirection(&DIP_switch, 1, 0xFF);
+    XGpio_SetDataDirection(&LEDS, 1, 0x00);
+
+    xilkernel_init();
+
+    //mutex = PTHREAD_MUTEX_INITIALIZER;
+    pthread_mutexattr_t Attr;
+    pthread_mutexattr_init(&Attr);
+    pthread_mutexattr_settype(&Attr, PTHREAD_MUTEX_RECURSIVE);
+    pthread_mutex_init(&system_mutex,&Attr);
+
+    pthread_mutexattr_t Attr2;
+    pthread_mutexattr_init(&Attr2);
+    pthread_mutexattr_settype(&Attr2, PTHREAD_MUTEX_RECURSIVE);
+    pthread_mutex_init(&sw_mutex,&Attr2);
+    //sem_init(&button_sem,0,0);
+    sem_init(&button_sem, 0, 0);
+    xmk_add_static_thread(xil_main,0);
+    xilkernel_start();
+
+    return 0;
+}
+

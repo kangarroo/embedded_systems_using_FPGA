@@ -1,0 +1,12 @@
+##############################################################################
+## Filename:          C:\temp\04-04-18\pcores/debouncer_v1_00_a/data/debouncer_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Thu Apr 05 14:23:02 2018 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a all vhdl
+lib axi_lite_ipif_v1_01_a all vhdl
+lib debouncer_v1_00_a DFF vhdl
+lib debouncer_v1_00_a counter vhdl
+lib debouncer_v1_00_a user_logic vhdl
+lib debouncer_v1_00_a debouncer vhdl

@@ -1,0 +1,9 @@
+-batch 
+-create rtc 
+-ver 5.00.a 
+-dir "C:\temp\05-04-18" 
+-lang vhdl 
+-bus axi4lite s 
+-reg 3 
+-xps 
+-ise 

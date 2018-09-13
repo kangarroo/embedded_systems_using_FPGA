@@ -1,0 +1,9 @@
+-batch 
+-create lcd 
+-ver 1.00.a 
+-dir "C:\temp\28-3-C" 
+-lang vhdl 
+-bus axi4lite s 
+-reg 1 
+-xps 
+-ise 

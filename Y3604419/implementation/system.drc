@@ -1,0 +1,211 @@
+Release 14.7 Drc P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Wed Apr 11 13:24:52 2018
+
+drc -z system.ncd system.pcf
+
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_M/load_flag_load[0]_AND_26_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_M/load_flag_load[1]_AND_24_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_M/load_flag_load[2]_AND_22_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_M/load_flag_load[3]_AND_20_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_M/load_flag_load[4]_AND_18_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_M/load_flag_load[5]_AND_16_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_H/load_flag_load[0]_AND_26_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_H/load_flag_load[1]_AND_24_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_H/load_flag_load[2]_AND_22_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_H/load_flag_load[3]_AND_20_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_H/load_flag_load[4]_AND_18_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_H/load_flag_load[5]_AND_16_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/Inst_clock_divider/clk_out is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_S/load_flag_load[5]_AND_16_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_S/load_flag_load[0]_AND_26_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_S/load_flag_load[1]_AND_24_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_S/load_flag_load[2]_AND_22_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_S/load_flag_load[3]_AND_20_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:372 - Gated clock. Clock net
+   rtc_0/rtc_0/USER_LOGIC_I/counter_S/load_flag_load[4]_AND_18_o is sourced by a
+   combinatorial pin. This is not good design practice. Use the CE pin to
+   control the loading of data into the flip-flop.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_W
+   riteThrough.DCache_I1/Mram_cacheline_copy1_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_W
+   riteThrough.DCache_I1/Mram_cacheline_copy3_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_W
+   riteThrough.DCache_I1/Mram_cacheline_copy2_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_W
+   riteThrough.DCache_I1/Mram_cacheline_copy4_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory1_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory9_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory3_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory2_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory7_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory11_RAMD_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory5_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory10_RAMD_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[9].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Using_DCache.Using_W
+   riteThrough.DCache_I1/Mram_cacheline_copy5_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory4_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory12_RAMD_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory6_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr<30>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <lcd_0/lcd_0/USER_LOGIC_I/fifo/Mram_memory8_RAMD_O> is incomplete. The signal
+   does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[8].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[7].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[6].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[4].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0_d_bram_ctrl_2_microblaze_0_bram_block_BRAM_Addr<31>> is
+   incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[12].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[14].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[15].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[5].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[10].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[11].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[2].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[1].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[3].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[13].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <microblaze_0/microblaze_0/MicroBlaze_Core_I/Performance.Data_Flow_I/Register
+   _File_I/Using_LUT6.All_RAM32M[0].ram32m_i_RAMD_D1_O> is incomplete. The
+   signal does not drive any load pins in the design.
+DRC detected 0 errors and 54 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

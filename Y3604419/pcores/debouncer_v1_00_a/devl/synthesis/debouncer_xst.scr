@@ -1,0 +1,12 @@
+run
+-opt_level 2
+-opt_mode speed
+-ifmt mixed
+-ifn "C:\temp\28-3-C\pcores\debouncer_v1_00_a\devl\synthesis\debouncer_xst.prj"
+-top debouncer
+-p virtex6
+-ofn "C:\temp\28-3-C\pcores\debouncer_v1_00_a\devl\synthesis\debouncer_xst.ngc"
+-iobuf NO
+-rtlview YES
+-hierarchy_separator /
+-work_lib debouncer_v1_00_a
